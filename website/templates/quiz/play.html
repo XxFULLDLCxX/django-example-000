@@ -1,0 +1,32 @@
+{% if question is None %}
+<div class="container">
+    <div class="jumbotron my-4">
+        <h1>Ya has respondido a todas preguntas. Ver el rank</h1>
+        <a href="">Score Rank</a>
+    </div>
+</div>
+{% else %}
+
+<div class="container">
+    <div class="jumbotron my-4">
+        <h3>
+            {{question.text}}
+        </h3>
+        <form action="" method="POST" class="form">
+            {% csrf_token %}
+            <input type="hidden" name="question_pk" value="{{question.pk}}">
+            {% for option in question.options.all %}
+            <p>
+                <input type="radio" class="form-check-input" name="answer_pk" value="{{option.pk}}"
+                    id="choice-{{forloop.counter}}">
+                    {{option.pk}}
+                <label class="form-check-label" for="choice-{{forloop.counter}}">
+                    {{option.text}}
+                </label></p>
+            {% endfor %}
+            <input class="btn btn-success" type="submit" value="Enviar">
+        </form>
+    </div>
+</div>
+
+{% endif %}

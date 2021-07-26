@@ -1,0 +1,23 @@
+{% extends 'website/base.html' %}
+
+{% block main %}
+<main class="col-sm">
+    <div id="main-content" data-num="{{section}}">
+        <form class="text-center" action="" method="POST">
+            {% csrf_token %}
+            <h2> {{title}} </h2>
+            <table class="col-sm">{{form.as_table}}</table>
+            <input class="btn" style="width:150px;" type="submit" value="Enviar">
+        </form>
+        
+    </div>
+    <div class="text-left">
+    <a class="a" href="/user/register">register user</a>
+</div>
+</main>
+<aside class="col-sm">
+    <div id="aside-content" data-num="{{section}}">
+    <h1>Página de Login</h1>
+    </div>
+</aside>
+{% endblock main %}

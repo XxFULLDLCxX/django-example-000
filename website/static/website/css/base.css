@@ -1,11 +1,142 @@
+:root {
+    /*Todos los colores para una mejor armonización*/
+    --article-color: rgb(255, 255, 255);
+    --button-color: rgb(98, 231, 109);
+    --header-color: rgb(240, 233, 200);
+    --border-color: rgb(0, 0, 0);
+    --input-color: rgb(248, 248, 248);
+    --title-color: rgb(0, 13, 19);
+    --form-color: rgb(202, 221, 226);
+    --text-color: rgb(19, 65, 83);
+    --footer-color: rgb(200, 200, 255);
+    --main-color: rgb(200, 255, 255);
+    --link-color: #1a73e8;
+}
+
+
+
 footer {
+    z-index: 1;
     position: fixed;
     bottom: 30px;
     width: 100%;
     text-align: center;
+    background-color: var(--footer-color);
+}
+
+header {
+    background-color: var(--header-color);
+}
+
+section {
+    margin-bottom: 100px;
 }
 
 body>article {
+    background-color: var(--article-color);
     max-width: 800px;
     margin: auto;
+}
+
+* {
+    color: var(--text-color);
+    border-radius: 5px;
+    margin: 0;
+    padding: 0;
+    border-style: none;
+}
+
+.a, .noselect {
+    -webkit-user-select: none;
+    user-select: none;
+}
+.a {
+    background-color: transparent;
+    color: var(--link-color);
+    padding: 8px;
+}
+
+a:hover {
+    color: var(--link-color);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--title-color);
+}
+
+main {
+    background-color: var(--main-color);
+}
+
+#main-content {
+    height: 100%;
+}
+
+.form {
+    background-color: var(--form-color);
+    width: 100%;
+    min-width: 280px;
+    margin: 10px auto;
+    border-radius: 5px;
+    padding: 1px 0;
+}
+
+.form>input {
+    display: block;
+}
+
+.form th {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.btn {
+    background-color: var(--button-color);
+}
+
+input {
+    outline-width: 0;
+    border-radius: 0;
+    border-style: none;
+    color: var(--text-color);
+    background-color: var(--input-color);
+    border-bottom-color: var(--border-color);
+    border-bottom-style: solid;
+
+}
+
+input:hover {
+    outline-width: 0;
+}
+
+.load {
+    position: absolute;
+    top: -50px;
+    left: 50px;
+    z-index: 100;
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+    animation-name: example;
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+
+}
+
+@keyframes example {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(360deg);
+    }
+
 }

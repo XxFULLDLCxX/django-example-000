@@ -1,37 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Home</title>
+
     {% load static %}
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'website/icons/website.ico' %}">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="{% static 'website/css/base.css' %}">
-    <title>Document</title>
+
+    <!--Scripts-->
+    <script src='{% static 'website/js/base.js' %}'></script>
 </head>
 
 <body>
     <header class="jumbotron text-center">
-        <h1>Título do website</h1>
-        <p>largura do título</p>
+        <h1>Single Page Application</h1>
+        <p>with Django and JavaScript</p>
+        <!--<button data-section="0" class='btn'>Home</button>-->
         <nav>
-            <a href="{% url 'website:home' %}" class="btn btn-info"></a>
-            <a href="" class="btn btn-info"></a>
-            <a href="" class="btn btn-info"></a>
+            <button data-id="1" class='section btn'>Contacto</button>
+            <button data-id="2" class='section btn'>Quizz</button>
+            <button data-id="3" class='section btn'>Comentarios</button>
+            <button data-id="4" class='btn'></button>
         </nav>
     </header>
-    <article class="container">
-        <main class="col-sm-6">
-            {% block main %}
-            {% endblock main %}
-        </main>
-        <aside class="col-sm-6">
-            {% load static %}
-            <img src="{% static 'website/images/image.png' %}" alt="">
-        </aside>
-    </article>
-    <footer>...</footer>
+    <section id="content" class="container">
+        <article class="row">
+            <main class="col-sm">
+                <div id="main-content" data-num="{{section}}">
+                </div>
+            </main>
+            <aside class="col-sm">
+                <div id="aside-content" data-num="{{section}}">
+                </div>
+            </aside>
+        </article>
+    </section>
+    <footer>
+        <img class="card-img load" src="{% static 'website/images/imagem.png' %}" alt="">
+        <p>Django Example</p>
+    </footer>
 </body>
 
 </html>

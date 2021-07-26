@@ -1,0 +1,10 @@
+<div class="container form">
+    <form action="javascript:void(0);?section=1&send=True" method="POST" style="text-align:center;">
+        {% csrf_token %}
+
+        <h2>Comentarios</h2>
+        <table style="color: black; margin: 20px auto;">{{form.as_table}}</table>
+
+        <input type="submit" value="Enviar" style="width:150px;">
+    </form>
+</div>
