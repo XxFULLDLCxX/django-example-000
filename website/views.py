@@ -4,29 +4,28 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from django.contrib.auth import authenticate, login, logout
 
-
 from .forms import ContactoForm, RegistroForm, UsuarioLoginForm, PreguntasRespondidas
 from .models import QuizUsuario, Pregunta
 
 
 def comment(request):
     print(request.method, 'comment')
-    return render(request, 'api/comment.html')
+    return render(request, 'website/comment.html')
 
 
 def quiz(request):
     print(request.method, 'quiz')
-    return render(request, 'quiz/play.html')
+    return render(request, 'website/play.html')
 
 
 def contact(request, send=True):
     print(request.method, 'contact')
-    return render(request, 'api/contact.html', {'form': ContactoForm()})
+    return render(request, 'website/contact.html', {'form': ContactoForm()})
 
 
 def user(request):
-    #Temporary
-    return render(request, 'api/user.html')
+    # Temporary
+    return render(request, 'user/home.html')
 
 
 api_views = [contact, quiz, comment]
@@ -79,10 +78,12 @@ def quiz_play(request):
     QuizUser, created = QuizUsuario.objects.get_or_create(user=request.user)
     if request.method == 'POST':
         question_pk = request.POST.get('question_pk')
-        question_answered = QuizUser.attempts.select_related('question').get(question__pk=question_pk)
+        question_answered = QuizUser.attempts.select_related(
+            'question').get(question__pk=question_pk)
         answer_pk = request.POST.get('question_pk')
         try:
-            selected_option = question_answered.question.options.get(pk=answer_pk)
+            selected_option = question_answered.question.options.get(
+                pk=answer_pk)
         except ObjectDoesNotExist:
             raise Http404
         QuizUser.validate_attempt(question_answered, selected_option)
@@ -107,11 +108,11 @@ def quiz_result(request, question_answered_pk):
     return render(request, "quiz/result.html", context)
 
 
-def section(request, num):
+def section(request, id):
     print(request.method, 'section')
     if request.method == "POST":
-        if 1 <= len(api_views) >= num:
-            return api_views[num - 1](request)
+        if 1 <= len(api_views) >= id:
+            return api_views[id - 1](request)
         else:
             raise Http404("No such section")
     else:
@@ -119,8 +120,8 @@ def section(request, num):
 
 
 def index(request):
-    my_forms = { 'contact': ContactoForm }
-    num = int(request.GET.get("section", 2))
+    my_forms = {'contact': ContactoForm}
+    id = int(request.GET.get("section", 2))
     send = request.GET.get("send", False)
     # Si no obter el GET ?section=num, entonces por default tenemos el quiz, num = 2.
     print(str(request.user), 'index')
@@ -136,6 +137,6 @@ def index(request):
     print(str(request.user))
 
     if str(request.user) != "AnonymousUser":
-        return render(request, 'website/index.html', {'section': num})
+        return render(request, 'website/index.html', {'section': id})
     else:
         return redirect('user/login')

@@ -23,7 +23,7 @@ const csrftoken = getCookie('csrftoken');
 
 
 function showSection(id) {
-    fetch(`/api/sections/${id}`, {
+    fetch(`/api/section/${id}`, {
             method: "POST",
             mode: "same-origin",
             headers: {
@@ -44,11 +44,11 @@ document.addEventListener('DOMContentLoaded', function () {
     content = document.querySelector('#content');
     document.querySelectorAll('.section').forEach(button => {
         button.onclick = function () {
-            const section = this.dataset.section;
+            const id = this.dataset.id;
             //document.querySelector('title').innerHTML = this.textContent;
             load.style = 'animation-duration: 0.1s;'
-            history.pushState({ section: section }, "", `/?section=${id}`);
-            showSection(section);
+            history.pushState({ id: id }, "", `/?section=${id}`);
+            showSection(id);
 
         };
     });

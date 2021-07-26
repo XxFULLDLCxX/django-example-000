@@ -1,5 +1,8 @@
 {% extends 'website/base.html' %}
 
+{% block user %}
+<a class="a btn btn-success" href="/user/login">{{user}}</a>
+{% endblock user %}
 {% block main %}
 
 <main class="col-sm">

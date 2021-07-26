@@ -30,11 +30,12 @@
             <button data-id="1" class='section btn'>Contacto</button>
             <button data-id="2" class='section btn'>Quizz</button>
             <button data-id="3" class='section btn'>Comentarios</button>
-            <button data-id="4" class='btn'></button>
+            {% block user %}{% endblock user %}
         </nav>
     </header>
     <section id="content" class="container">
         <article class="row">
+            {% block main %}
             <main class="col-sm">
                 <div id="main-content" data-num="{{section}}">
                 </div>
@@ -43,6 +44,7 @@
                 <div id="aside-content" data-num="{{section}}">
                 </div>
             </aside>
+            {% endblock main %}
         </article>
     </section>
     <footer>

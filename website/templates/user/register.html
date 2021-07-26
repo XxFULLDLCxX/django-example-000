@@ -2,16 +2,17 @@
 
 {% block main %}
 <main class="row-sm">
-    <div id="content" data-num="{{section}}">
+    <div id="content" class="text-center">
         <form action="" method="POST">
             {% csrf_token %}
             <h2> {{title}} </h2>
             <table class="col-sm">{{form.as_table}}</table>
             <input class="btn btn-success" style="width:150px;" type="submit" value="Enviar">
         </form>
+        <div class="text-left">
+            <a class="a" href="/user/login">Login user</a>
+        </div>
     </div>
-    <button class="a">Register user</button>
-
 </main>
 <aside class="col-sm">
     <div data-num="{{section}}">
